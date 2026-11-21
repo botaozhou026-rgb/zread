@@ -58,7 +58,7 @@ test('录入、校验、统计、修改、删除和重新打开', async (t) => {
 });
 test('Windows 桌面快捷方式指向成绩统计器的独立窗口', async (t) => {
   const { execFileSync } = await import('node:child_process');
-  const { mkdtemp, rm } = await import('node:fs/promises');
+  const { mkdtemp, readFile, rm } = await import('node:fs/promises');
   const { tmpdir } = await import('node:os');
   const { join } = await import('node:path');
   const { fileURLToPath } = await import('node:url');
@@ -71,7 +71,13 @@ test('Windows 桌面快捷方式指向成绩统计器的独立窗口', async (t)
     $link = $shell.CreateShortcut((Get-ChildItem -LiteralPath $env:GRADEBOOK_TEST_DIRECTORY -Filter '*.lnk').FullName)
     $link.TargetPath
     $link.Arguments
+    $link.IconLocation
   `], { encoding: 'utf8', env: { ...process.env, GRADEBOOK_TEST_DIRECTORY: directory } }).trim().split(/\r?\n/);
   assert.match(shortcut[0], /msedge\.exe$/i);
   assert.equal(shortcut[1], `--app="${url}"`);
+  const icon = new URL('./gradebook.ico', import.meta.url);
+  assert.equal(shortcut[2], `${fileURLToPath(icon)},0`);
+  const iconFile = await readFile(icon);
+  assert.equal(iconFile.readUInt16LE(2), 1);
+  assert.equal(iconFile[6], 16);
 });

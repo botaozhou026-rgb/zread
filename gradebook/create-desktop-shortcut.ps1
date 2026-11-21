@@ -16,5 +16,16 @@ $shortcut.TargetPath = $edge
 $shortcut.Arguments = '--app="' + $page.AbsoluteUri + '"'
 $shortcut.WorkingDirectory = $PSScriptRoot
 $shortcut.Description = '班级成绩统计器'
+$shortcut.IconLocation = (Join-Path $PSScriptRoot 'gradebook.ico') + ',0'
 $shortcut.Save()
+
+Add-Type @"
+using System;
+using System.Runtime.InteropServices;
+public static class GradebookShell {
+    [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
+    public static extern void SHChangeNotify(uint eventId, uint flags, string path, IntPtr unused);
+}
+"@
+[GradebookShell]::SHChangeNotify(0x2000, 0x0005, $shortcutPath, [IntPtr]::Zero)
 Write-Output $shortcutPath
