@@ -10,8 +10,8 @@ test('录入、校验、统计、修改、删除和重新打开', async (t) => {
   const context = await browser.newContext();
   let page = await context.newPage();
   await page.goto(url);
-  assert.equal(await page.locator('h1').evaluate((title) => getComputedStyle(title).color), 'rgb(32, 91, 53)');
-  assert.equal(await page.locator('thead th').first().evaluate((cell) => getComputedStyle(cell).color), 'rgb(32, 91, 53)');
+  assert.equal(await page.locator('h1').evaluate((title) => getComputedStyle(title).color), 'rgb(37, 68, 55)');
+  assert.equal(await page.locator('thead th').first().evaluate((cell) => getComputedStyle(cell).color), 'rgb(37, 68, 55)');
 
   async function fillRecord(number, name, score) {
     await page.getByRole('button', { name: '录入成绩' }).click();

@@ -1,6 +1,6 @@
 :root {
   font-family: system-ui, "Microsoft YaHei", sans-serif;
-  color: #205b35;
+  color: #254437;
   background: #f5f7f4;
   line-height: 1.5;
 }
@@ -12,7 +12,7 @@ h1, h2, h3, p, dl, dd { margin: 0; }
 h1 { font-size: clamp(1.7rem, 4vw, 2.5rem); }
 h2 { font-size: 1.2rem; }
 h3 { font-size: 1rem; }
-header p, .hint, dt, .empty { color: #416b50; }
+header p, .hint, dt, .empty { color: #4c6158; }
 header p, .hint { margin-top: 6px; }
 .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 235px), 1fr)); gap: 14px; margin-top: 12px; }
 article, .records { background: #fff; border: 1px solid #dce5dd; border-radius: 14px; }
@@ -44,7 +44,7 @@ dialog::backdrop { background: rgb(16 36 28 / 48%); }
 dialog h2 { margin-bottom: 12px; }
 .fields, #scores { display: grid; gap: 10px; }
 label { display: grid; gap: 4px; }
-input { color: inherit; width: 100%; border: 1px solid #bfcfc4; border-radius: 6px; padding: 6px 9px; }
+input { width: 100%; border: 1px solid #bfcfc4; border-radius: 6px; padding: 6px 9px; }
 .actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
 .error { color: #9c2928; }
 .error:not(:empty) { margin-top: 8px; }
