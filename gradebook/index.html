@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>班级成绩统计器</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>班级成绩统计器</h1>
+      <p>单班级 · 单次考试 · 成绩保存在当前浏览器</p>
+    </header>
+    <section aria-labelledby="summary-heading">
+      <h2 id="summary-heading">各科统计</h2>
+      <div id="summary" class="summary"></div>
+    </section>
+    <section class="records" aria-labelledby="records-heading">
+      <div class="toolbar">
+        <h2 id="records-heading">学生成绩</h2>
+        <button id="add" class="primary">录入成绩</button>
+      </div>
+      <p id="status" role="status" hidden></p>
+      <div class="table-wrap">
+        <table aria-labelledby="records-heading">
+          <thead><tr id="columns"></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <dialog id="editor" aria-labelledby="edit-title">
+    <form id="edit-form">
+      <h2 id="edit-title"></h2>
+      <div class="fields">
+        <label>学号<input name="number" required autofocus></label>
+        <label>姓名<input name="name" required></label>
+        <div id="scores"></div>
+      </div>
+      <p class="hint">没有成绩的科目可以留空。</p>
+      <p id="edit-error" class="error" role="alert"></p>
+      <div class="actions">
+        <button type="button" id="cancel-edit">取消</button>
+        <button type="submit" class="primary">保存</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog id="deletion" aria-labelledby="delete-title" aria-describedby="delete-details">
+    <form id="delete-form">
+      <h2 id="delete-title">删除成绩</h2>
+      <p id="delete-details"></p>
+      <p id="delete-error" class="error" role="alert"></p>
+      <div class="actions">
+        <button type="button" id="cancel-delete" autofocus>取消</button>
+        <button type="submit" class="danger">确认删除</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
